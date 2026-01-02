@@ -1,0 +1,239 @@
+{% extends "leases/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ lease.title }} - {% trans "Rental Housing" %}{% endblock %}
+
+{% block breadcrumbs %}
+<nav class="breadcrumbs">
+    <a href="{% url 'leases:lease_list' %}">{% trans "Leases" %}</a>
+    <span>/</span>
+    {{ lease.title|default:lease }}
+</nav>
+{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h1>{{ lease }}</h1>
+    <div>
+        <a href="{% url 'leases:lease_update' lease.pk %}">{% trans "Edit" %}</a>
+        <form action="{% url 'leases:lease_delete' lease.pk %}" method="post" style="display: inline;" onsubmit="return confirm('{% trans "Are you sure you want to delete this lease?" %}');">
+            {% csrf_token %}
+            <button type="submit" class="btn-link btn-danger">{% trans "Delete" %}</button>
+        </form>
+    </div>
+</div>
+
+<p>
+    <strong>{% trans "Start Date" %}:</strong> {{ lease.first_period_start }}<br>
+    <strong>{% trans "Currency" %}:</strong> {{ lease.get_currency_display }}
+</p>
+
+<hr>
+
+<div class="section-header">
+    <h2>{% trans "Rent Rates" %}</h2>
+    <a href="{% url 'leases:rent_rate_create' lease.pk %}" class="btn-icon" title="{% trans 'Add rent rate' %}">
+        {% include "leases/icons/plus.svg" %}
+    </a>
+</div>
+{% if rent_rates %}
+<table>
+    <thead>
+    <tr>
+        <th>{% trans "Amount" %}</th>
+        <th>{% trans "Effective From" %}</th>
+        <th>{% trans "Effective Until" %}</th>
+        <th>{% trans "Notes" %}</th>
+        <th>{% trans "Actions" %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for rate in rent_rates %}
+    <tr>
+        <td>{{ rate.amount }}</td>
+        <td>{{ rate.effective_date }}</td>
+        <td>{{ rate.end_date|default:"-" }}</td>
+        <td>{{ rate.notes }}</td>
+        <td class="actions">
+            <a href="{% url 'leases:rent_rate_update' lease.pk rate.pk %}" class="btn-icon" title="{% trans 'Edit' %}">
+                {% include "leases/icons/pencil.svg" %}
+            </a>
+            <form action="{% url 'leases:rent_rate_delete' lease.pk rate.pk %}" method="post" style="display: inline;" onsubmit="return confirm('{% trans "Are you sure?" %}');">
+                {% csrf_token %}
+                <button type="submit" class="btn-icon btn-danger" title="{% trans 'Delete' %}">
+                    {% include "leases/icons/trash.svg" %}
+                </button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>{% trans "No rent rates defined." %}</p>
+{% endif %}
+
+<div class="section-header">
+    <h2>{% trans "Payments" %}</h2>
+    <a href="{% url 'leases:payment_create' lease.pk %}" class="btn-icon" title="{% trans 'Add payment' %}">
+        {% include "leases/icons/plus.svg" %}
+    </a>
+</div>
+
+<div id="payment-suggestions"></div>
+{{ js_data|json_script:"payment-suggestions-data" }}
+
+{% if payments %}
+<div class="table-collapsible">
+    <table>
+        <thead>
+        <tr>
+            <th>{% trans "Date" %}</th>
+            <th>{% trans "Amount" %}</th>
+            <th>{% trans "Status" %}</th>
+            <th>{% trans "Target Period" %}</th>
+            <th>{% trans "Actions" %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for payment in payments %}
+        <tr>
+            <td>{{ payment.date }}</td>
+            <td>{{ payment.amount }}</td>
+            <td>{{ payment.get_status_display }}</td>
+            <td>{{ payment.target_period_start|default:"-" }}</td>
+            <td class="actions">
+                <a href="{% url 'leases:payment_update' lease.pk payment.pk %}" class="btn-icon" title="{% trans 'Edit' %}">
+                    {% include "leases/icons/pencil.svg" %}
+                </a>
+                <form action="{% url 'leases:payment_delete' lease.pk payment.pk %}" method="post" style="display: inline;" onsubmit="return confirm('{% trans "Are you sure?" %}');">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-icon btn-danger" title="{% trans 'Delete' %}">
+                        {% include "leases/icons/trash.svg" %}
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+        {% for year, total in payments_yearly %}
+        <tr class="summary-row">
+            <td>{{ year }}</td>
+            <td><strong>{{ total }}</strong></td>
+            <td colspan="3"></td>
+        </tr>
+        {% endfor %}
+        <tr class="summary-row total-row">
+            <td>{% trans "Total" %}</td>
+            <td><strong>{{ payments_total }}</strong></td>
+            <td colspan="3"></td>
+        </tr>
+        </tfoot>
+    </table>
+    {% if payments|length > 5 %}
+    <label class="show-more-toggle">
+        <input type="checkbox" hidden>
+        <span class="show-more-btn">{% trans "Show all" %} ({{ payments|length }})</span>
+        <span class="show-less-btn">{% trans "Show less" %}</span>
+    </label>
+    {% endif %}
+</div>
+{% else %}
+<p>{% trans "No payments recorded." %}</p>
+{% endif %}
+
+<div class="section-header">
+    <h2>{% trans "Extra Payments" %}</h2>
+    <a href="{% url 'leases:extra_payment_create' lease.pk %}" class="btn-icon" title="{% trans 'Add extra payment' %}">
+        {% include "leases/icons/plus.svg" %}
+    </a>
+</div>
+{% if extra_payments %}
+<table>
+    <thead>
+    <tr>
+        <th>{% trans "Date" %}</th>
+        <th>{% trans "Title" %}</th>
+        <th>{% trans "Amount" %}</th>
+        <th>{% trans "Direction" %}</th>
+        <th>{% trans "Status" %}</th>
+        <th>{% trans "Actions" %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for extra in extra_payments %}
+    <tr>
+        <td>{{ extra.agreed_date }}</td>
+        <td>{{ extra.title }}</td>
+        <td>{{ extra.amount }}</td>
+        <td>{{ extra.get_direction_display }}</td>
+        <td>{{ extra.get_status_display }}</td>
+        <td class="actions">
+            <a href="{% url 'leases:extra_payment_update' lease.pk extra.pk %}" class="btn-icon" title="{% trans 'Edit' %}">
+                {% include "leases/icons/pencil.svg" %}
+            </a>
+            <form action="{% url 'leases:extra_payment_delete' lease.pk extra.pk %}" method="post" style="display: inline;" onsubmit="return confirm('{% trans "Are you sure?" %}');">
+                {% csrf_token %}
+                <button type="submit" class="btn-icon btn-danger" title="{% trans 'Delete' %}">
+                    {% include "leases/icons/trash.svg" %}
+                </button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>{% trans "No extra payments recorded." %}</p>
+{% endif %}
+
+<div class="section-header">
+    <h2>{% trans "Transactions" %}</h2>
+    <a href="{% url 'leases:transaction_create' lease.pk %}" class="btn-icon" title="{% trans 'Add transaction' %}">
+        {% include "leases/icons/plus.svg" %}
+    </a>
+</div>
+{% if transactions %}
+<table>
+    <thead>
+    <tr>
+        <th>{% trans "Date" %}</th>
+        <th>{% trans "Amount" %}</th>
+        <th>{% trans "Notes" %}</th>
+        <th>{% trans "Payments Covered" %}</th>
+        <th>{% trans "Actions" %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for tx in transactions %}
+    <tr>
+        <td>{{ tx.date }}</td>
+        <td>{{ tx.amount }}</td>
+        <td>{{ tx.notes }}</td>
+        <td>{{ tx.payments_covered.count }} + {{ tx.extra_payments_covered.count }}</td>
+        <td class="actions">
+            <a href="{% url 'leases:transaction_update' lease.pk tx.pk %}" class="btn-icon" title="{% trans 'Edit' %}">
+                {% include "leases/icons/pencil.svg" %}
+            </a>
+            <form action="{% url 'leases:transaction_delete' lease.pk tx.pk %}" method="post" style="display: inline;" onsubmit="return confirm('{% trans "Are you sure?" %}');">
+                {% csrf_token %}
+                <button type="submit" class="btn-icon btn-danger" title="{% trans 'Delete' %}">
+                    {% include "leases/icons/trash.svg" %}
+                </button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>{% trans "No transactions recorded." %}</p>
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+{% load static %}
+<script src="{% static 'leases/js/payment-suggestions.js' %}"></script>
+{% endblock %}

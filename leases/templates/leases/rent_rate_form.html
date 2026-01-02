@@ -1,0 +1,59 @@
+{% extends "leases/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ action }} {% trans "Rent Rate" %} - {{ lease }}{% endblock %}
+
+{% block breadcrumbs %}
+<nav class="breadcrumbs">
+    <a href="{% url 'leases:lease_list' %}">{% trans "Leases" %}</a>
+    <span>/</span>
+    <a href="{% url 'leases:lease_detail' lease.pk %}">{{ lease.title|default:lease }}</a>
+    <span>/</span>
+    {% if rent_rate %}
+        {% trans "Edit Rent Rate" %}
+    {% else %}
+        {% trans "New Rent Rate" %}
+    {% endif %}
+</nav>
+{% endblock %}
+
+{% block content %}
+<h1>{{ action }} {% trans "Rent Rate" %}</h1>
+<p><strong>{% trans "Lease" %}:</strong> {{ lease }}</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+    <div class="messages">
+        <ul>
+            {% for error in form.non_field_errors %}
+            <li class="error">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% for field in form %}
+    <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}
+        <small>{{ field.help_text }}</small>
+        {% endif %}
+        {% if field.errors %}
+        <ul style="color: var(--danger-color); margin-top: 0.25rem; padding-left: 1rem;">
+            {% for error in field.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <div style="margin-top: 1rem;">
+        <button type="submit">{% trans "Save" %}</button>
+        <a href="{% url 'leases:lease_detail' lease.pk %}" style="margin-left: 1rem;">{% trans "Cancel" %}</a>
+    </div>
+</form>
+{% endblock %}

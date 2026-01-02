@@ -1,0 +1,12 @@
+<div class="language-switcher">
+    {% for lang in languages %}
+    <form method="post" action="{% url 'set_language' %}" style="display: inline;">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.get_full_path }}">
+        <input type="hidden" name="language" value="{{ lang.code }}">
+        <button type="submit" class="lang-btn{% if lang.active %} active{% endif %}">
+            {{ lang.code|upper }}
+        </button>
+    </form>
+    {% endfor %}
+</div>
