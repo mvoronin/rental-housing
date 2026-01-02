@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Database
+*.sqlite3
+db.sqlite3
+
+# Django
+*.log
+local_settings.py
+staticfiles/
+media/
+
+# Testing
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+
+# IDE/Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/
+*.egg-info/
+*.egg
+
+# UV cache
+.uv/
+
+# Compiled translations (optional, uncomment if you don't want to track)
+# *.mo
+
+# Local notes
+TODO.md
+CLAUDE.md

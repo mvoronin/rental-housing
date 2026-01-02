@@ -1,0 +1,38 @@
+{% load language_switcher i18n static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>{% block title %}{% trans "Rental Housing" %}{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'leases/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'leases/css/style.css' %}">
+</head>
+<body>
+
+<nav>
+    <div class="nav-links">
+        <a href="{% url 'leases:lease_list' %}">{% trans "Leases" %}</a>
+        <a href="{% url 'leases:lease_create' %}">{% trans "New Lease" %}</a>
+    </div>
+    {% language_switcher %}
+</nav>
+
+{% block breadcrumbs %}{% endblock %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>

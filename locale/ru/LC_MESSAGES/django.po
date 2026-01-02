@@ -1,0 +1,493 @@
+# Russian translations for Rental Housing.
+# Copyright (C) 2026
+# This file is distributed under the same license as the rental-housing package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: rental-housing 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-02 20:11+0300\n"
+"PO-Revision-Date: 2026-01-01 12:04+0300\n"
+"Last-Translator: \n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: leases/models.py:24
+msgid "Russian ruble"
+msgstr "Российский рубль"
+
+#: leases/models.py:25
+msgid "US dollar"
+msgstr "Доллар США"
+
+#: leases/models.py:26
+msgid "Euro"
+msgstr "Евро"
+
+#: leases/models.py:28 leases/models.py:142
+#: leases/templates/leases/lease_detail.html:157
+#: leases/templates/leases/lease_list.html:21
+msgid "Title"
+msgstr "Название"
+
+#: leases/models.py:29
+msgid "First period start"
+msgstr "Начало первого периода"
+
+#: leases/models.py:29
+msgid "Date when the lease starts."
+msgstr "Дата начала аренды."
+
+#: leases/models.py:31 leases/templates/leases/lease_detail.html:28
+#: leases/templates/leases/lease_list.html:23
+msgid "Currency"
+msgstr "Валюта"
+
+#: leases/models.py:35
+msgid "All rent rates and payments for this lease are in this currency."
+msgstr "Все ставки и платежи по этому договору в этой валюте."
+
+#: leases/models.py:40 leases/models.py:50 leases/models.py:94
+#: leases/models.py:140 leases/models.py:179
+#: leases/templates/leases/extra_payment_form.html:22
+#: leases/templates/leases/lease_form.html:4
+#: leases/templates/leases/lease_form.html:21
+#: leases/templates/leases/payment_form.html:22
+#: leases/templates/leases/rent_rate_form.html:22
+#: leases/templates/leases/transaction_form.html:22
+msgid "Lease"
+msgstr "Договор"
+
+#: leases/models.py:41 leases/templates/leases/base.html:16
+#: leases/templates/leases/extra_payment_form.html:8
+#: leases/templates/leases/lease_detail.html:8
+#: leases/templates/leases/lease_form.html:8
+#: leases/templates/leases/lease_list.html:4
+#: leases/templates/leases/lease_list.html:7
+#: leases/templates/leases/payment_form.html:8
+#: leases/templates/leases/rent_rate_form.html:8
+#: leases/templates/leases/transaction_form.html:8
+msgid "Leases"
+msgstr "Договоры"
+
+#: leases/models.py:44
+#, python-format
+msgid "Lease starting %(date)s"
+msgstr "Договор с %(date)s"
+
+#: leases/models.py:51 leases/models.py:96 leases/models.py:150
+#: leases/models.py:182 leases/templates/leases/lease_detail.html:43
+#: leases/templates/leases/lease_detail.html:92
+#: leases/templates/leases/lease_detail.html:158
+#: leases/templates/leases/lease_detail.html:202
+msgid "Amount"
+msgstr "Сумма"
+
+#: leases/models.py:51
+msgid "Monthly rent amount."
+msgstr "Ежемесячная сумма аренды."
+
+#: leases/models.py:52
+msgid "Effective from"
+msgstr "Действует с"
+
+#: leases/models.py:52
+msgid "Date when this rent amount starts applying."
+msgstr "Дата начала действия этой ставки."
+
+#: leases/models.py:54
+msgid "Effective until"
+msgstr "Действует до"
+
+#: leases/models.py:57
+msgid ""
+"Date when this amount stops applying (exclusive). Leave empty for the "
+"current rate."
+msgstr ""
+"Дата окончания действия (не включительно). Оставьте пустым для текущей "
+"ставки."
+
+#: leases/models.py:59 leases/models.py:104 leases/models.py:183
+#: leases/templates/leases/lease_detail.html:46
+#: leases/templates/leases/lease_detail.html:203
+msgid "Notes"
+msgstr "Примечания"
+
+#: leases/models.py:63
+msgid "Rent rate"
+msgstr "Ставка аренды"
+
+#: leases/models.py:64
+msgid "Rent rates"
+msgstr "Ставки аренды"
+
+#: leases/models.py:73
+#, python-format
+msgid "%(amount)s starting %(start)s"
+msgstr "%(amount)s с %(start)s"
+
+#: leases/models.py:78
+#, python-format
+msgid "%(label)s until %(end)s"
+msgstr "%(label)s до %(end)s"
+
+#: leases/models.py:89 leases/models.py:131
+msgid "Planned payment"
+msgstr "Запланирован"
+
+#: leases/models.py:90
+msgid "Overdue payment"
+msgstr "Просрочен"
+
+#: leases/models.py:91 leases/models.py:132
+msgid "Reserved for landlord"
+msgstr "Зарезервирован"
+
+#: leases/models.py:92
+msgid "Paid to landlord"
+msgstr "Оплачен"
+
+#: leases/models.py:95 leases/models.py:181
+#: leases/templates/leases/lease_detail.html:91
+#: leases/templates/leases/lease_detail.html:156
+#: leases/templates/leases/lease_detail.html:201
+msgid "Date"
+msgstr "Дата"
+
+#: leases/models.py:95 leases/models.py:181
+msgid "Date when the money moved or is expected to move."
+msgstr "Дата фактического или ожидаемого перевода."
+
+#: leases/models.py:97 leases/models.py:145
+#: leases/templates/leases/lease_detail.html:93
+#: leases/templates/leases/lease_detail.html:160
+msgid "Status"
+msgstr "Статус"
+
+#: leases/models.py:99
+msgid "Target period start"
+msgstr "Начало целевого периода"
+
+#: leases/models.py:102
+msgid "Optional rent period this payment is linked to (start date)."
+msgstr "Период аренды, к которому относится платёж (дата начала)."
+
+#: leases/models.py:108 leases/templates/leases/payment_form.html:4
+#: leases/templates/leases/payment_form.html:21
+msgid "Payment"
+msgstr "Платёж"
+
+#: leases/models.py:109 leases/templates/leases/lease_detail.html:77
+msgid "Payments"
+msgstr "Платежи"
+
+#: leases/models.py:112
+#, python-format
+msgid "%(amount)s on %(date)s (%(status)s)"
+msgstr "%(amount)s от %(date)s (%(status)s)"
+
+#: leases/models.py:127
+msgid "Tenant to landlord"
+msgstr "От арендатора арендодателю"
+
+#: leases/models.py:128
+msgid "Landlord to tenant"
+msgstr "От арендодателя арендатору"
+
+#: leases/models.py:133
+msgid "Paid"
+msgstr "Оплачен"
+
+#: leases/models.py:134
+msgid "Canceled"
+msgstr "Отменён"
+
+#: leases/models.py:143
+msgid "Description"
+msgstr "Описание"
+
+#: leases/models.py:144 leases/templates/leases/lease_detail.html:159
+msgid "Direction"
+msgstr "Направление"
+
+#: leases/models.py:146
+msgid "Agreed date"
+msgstr "Дата согласования"
+
+#: leases/models.py:146
+msgid "Date when the parties agreed on this payment."
+msgstr "Дата, когда стороны договорились о платеже."
+
+#: leases/models.py:148
+msgid "Paid date"
+msgstr "Дата оплаты"
+
+#: leases/models.py:148
+msgid "Actual date of payment (if paid)."
+msgstr "Фактическая дата оплаты (если оплачен)."
+
+#: leases/models.py:151 leases/models.py:190
+msgid "Created at"
+msgstr "Создано"
+
+#: leases/models.py:152 leases/models.py:191
+msgid "Updated at"
+msgstr "Обновлено"
+
+#: leases/models.py:156
+msgid "Extra payment"
+msgstr "Дополнительный платёж"
+
+#: leases/models.py:157
+msgid "Extra payments"
+msgstr "Дополнительные платежи"
+
+#: leases/models.py:170
+#, python-format
+msgid "%(title)s: %(amount)s (%(direction)s)"
+msgstr "%(title)s: %(amount)s (%(direction)s)"
+
+#: leases/models.py:185
+msgid "Payments covered"
+msgstr "Покрытые платежи"
+
+#: leases/models.py:188
+msgid "Extra payments covered"
+msgstr "Покрытые доп. платежи"
+
+#: leases/templates/leases/base.html:8
+#: leases/templates/leases/lease_detail.html:4
+#: leases/templates/leases/lease_form.html:4
+#: leases/templates/leases/lease_list.html:4
+msgid "Rental Housing"
+msgstr "Учёт аренды"
+
+#: leases/templates/leases/base.html:17
+#: leases/templates/leases/lease_form.html:15
+msgid "New Lease"
+msgstr "Новый договор"
+
+#: leases/templates/leases/extra_payment_form.html:4
+#: leases/templates/leases/extra_payment_form.html:21
+msgid "Extra Payment"
+msgstr "Дополнительный платёж"
+
+#: leases/templates/leases/extra_payment_form.html:13
+msgid "Edit Extra Payment"
+msgstr "Редактировать доп. платёж"
+
+#: leases/templates/leases/extra_payment_form.html:15
+msgid "New Extra Payment"
+msgstr "Новый доп. платёж"
+
+#: leases/templates/leases/extra_payment_form.html:55
+#: leases/templates/leases/lease_form.html:54
+#: leases/templates/leases/payment_form.html:55
+#: leases/templates/leases/rent_rate_form.html:55
+#: leases/templates/leases/transaction_form.html:55
+msgid "Save"
+msgstr "Сохранить"
+
+#: leases/templates/leases/extra_payment_form.html:56
+#: leases/templates/leases/lease_form.html:55
+#: leases/templates/leases/payment_form.html:56
+#: leases/templates/leases/rent_rate_form.html:56
+#: leases/templates/leases/transaction_form.html:56
+msgid "Cancel"
+msgstr "Отмена"
+
+#: leases/templates/leases/lease_detail.html:18
+#: leases/templates/leases/lease_detail.html:58
+#: leases/templates/leases/lease_detail.html:106
+#: leases/templates/leases/lease_detail.html:173
+#: leases/templates/leases/lease_detail.html:216
+#: leases/templates/leases/lease_form.html:13
+#: leases/templates/leases/lease_list.html:38
+msgid "Edit"
+msgstr "Редактировать"
+
+#: leases/templates/leases/lease_detail.html:19
+msgid "Are you sure you want to delete this lease?"
+msgstr "Вы уверены, что хотите удалить этот договор?"
+
+#: leases/templates/leases/lease_detail.html:21
+#: leases/templates/leases/lease_detail.html:63
+#: leases/templates/leases/lease_detail.html:111
+#: leases/templates/leases/lease_detail.html:178
+#: leases/templates/leases/lease_detail.html:221
+msgid "Delete"
+msgstr "Удалить"
+
+#: leases/templates/leases/lease_detail.html:27
+#: leases/templates/leases/lease_list.html:22
+msgid "Start Date"
+msgstr "Дата начала"
+
+#: leases/templates/leases/lease_detail.html:34
+msgid "Rent Rates"
+msgstr "Ставки аренды"
+
+#: leases/templates/leases/lease_detail.html:35
+msgid "Add rent rate"
+msgstr "Добавить ставку"
+
+#: leases/templates/leases/lease_detail.html:44
+msgid "Effective From"
+msgstr "Действует с"
+
+#: leases/templates/leases/lease_detail.html:45
+msgid "Effective Until"
+msgstr "Действует до"
+
+#: leases/templates/leases/lease_detail.html:47
+#: leases/templates/leases/lease_detail.html:95
+#: leases/templates/leases/lease_detail.html:161
+#: leases/templates/leases/lease_detail.html:205
+#: leases/templates/leases/lease_list.html:24
+msgid "Actions"
+msgstr "Действия"
+
+#: leases/templates/leases/lease_detail.html:61
+#: leases/templates/leases/lease_detail.html:109
+#: leases/templates/leases/lease_detail.html:176
+#: leases/templates/leases/lease_detail.html:219
+msgid "Are you sure?"
+msgstr "Вы уверены?"
+
+#: leases/templates/leases/lease_detail.html:73
+msgid "No rent rates defined."
+msgstr "Ставки аренды не заданы."
+
+#: leases/templates/leases/lease_detail.html:78
+msgid "Add payment"
+msgstr "Добавить платёж"
+
+#: leases/templates/leases/lease_detail.html:94
+msgid "Target Period"
+msgstr "Целевой период"
+
+#: leases/templates/leases/lease_detail.html:128
+msgid "Total"
+msgstr "Итого"
+
+#: leases/templates/leases/lease_detail.html:137
+msgid "Show all"
+msgstr "Показать все"
+
+#: leases/templates/leases/lease_detail.html:138
+msgid "Show less"
+msgstr "Свернуть"
+
+#: leases/templates/leases/lease_detail.html:143
+msgid "No payments recorded."
+msgstr "Платежи не записаны."
+
+#: leases/templates/leases/lease_detail.html:147
+msgid "Extra Payments"
+msgstr "Дополнительные платежи"
+
+#: leases/templates/leases/lease_detail.html:148
+msgid "Add extra payment"
+msgstr "Добавить доп. платёж"
+
+#: leases/templates/leases/lease_detail.html:188
+msgid "No extra payments recorded."
+msgstr "Дополнительные платежи не записаны."
+
+#: leases/templates/leases/lease_detail.html:192
+msgid "Transactions"
+msgstr "Транзакции"
+
+#: leases/templates/leases/lease_detail.html:193
+msgid "Add transaction"
+msgstr "Добавить транзакцию"
+
+#: leases/templates/leases/lease_detail.html:204
+msgid "Payments Covered"
+msgstr "Покрытые платежи"
+
+#: leases/templates/leases/lease_detail.html:231
+msgid "No transactions recorded."
+msgstr "Транзакции не записаны."
+
+#: leases/templates/leases/lease_list.html:10
+msgid "Search leases..."
+msgstr "Поиск договоров..."
+
+#: leases/templates/leases/lease_list.html:11
+msgid "Search"
+msgstr "Найти"
+
+#: leases/templates/leases/lease_list.html:13
+msgid "Clear"
+msgstr "Сбросить"
+
+#: leases/templates/leases/lease_list.html:45
+msgid "No leases found."
+msgstr "Договоры не найдены."
+
+#: leases/templates/leases/lease_list.html:45
+msgid "Create one?"
+msgstr "Создать?"
+
+#: leases/templates/leases/payment_form.html:13
+msgid "Edit Payment"
+msgstr "Редактировать платёж"
+
+#: leases/templates/leases/payment_form.html:15
+msgid "New Payment"
+msgstr "Новый платёж"
+
+#: leases/templates/leases/rent_rate_form.html:4
+#: leases/templates/leases/rent_rate_form.html:21
+msgid "Rent Rate"
+msgstr "Ставка аренды"
+
+#: leases/templates/leases/rent_rate_form.html:13
+msgid "Edit Rent Rate"
+msgstr "Редактировать ставку"
+
+#: leases/templates/leases/rent_rate_form.html:15
+msgid "New Rent Rate"
+msgstr "Новая ставка"
+
+#: leases/templates/leases/transaction_form.html:4
+#: leases/templates/leases/transaction_form.html:21
+msgid "Transaction"
+msgstr "Транзакция"
+
+#: leases/templates/leases/transaction_form.html:13
+msgid "Edit Transaction"
+msgstr "Редактировать транзакцию"
+
+#: leases/templates/leases/transaction_form.html:15
+msgid "New Transaction"
+msgstr "Новая транзакция"
+
+#: leases/views.py:97
+msgid "Overdue"
+msgstr "Просрочен"
+
+#: leases/views.py:98
+msgid "Planned"
+msgstr "Запланирован"
+
+#: leases/views.py:99
+msgid "Add"
+msgstr "Добавить"
+
+#: leases/views.py:100
+msgid "for"
+msgstr "за"
+
+#~ msgid "Suggested payment"
+#~ msgstr "Рекомендуемый платёж"
+
+#~ msgid "Add this payment"
+#~ msgstr "Добавить этот платёж"

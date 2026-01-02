@@ -1,0 +1,48 @@
+{% extends "leases/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Leases" %} - {% trans "Rental Housing" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Leases" %}</h1>
+
+<form method="get" style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+    <input type="text" name="search" placeholder="{% trans "Search leases..." %}" value="{{ search }}">
+    <button type="submit">{% trans "Search" %}</button>
+    {% if search %}
+    <a href="{% url 'leases:lease_list' %}" style="align-self: center;">{% trans "Clear" %}</a>
+    {% endif %}
+</form>
+
+{% if leases %}
+<table>
+    <thead>
+    <tr>
+        <th>{% trans "Title" %}</th>
+        <th>{% trans "Start Date" %}</th>
+        <th>{% trans "Currency" %}</th>
+        <th>{% trans "Actions" %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for lease in leases %}
+    <tr>
+        <td>
+            <a href="{% url 'leases:lease_detail' lease.pk %}">
+                {{ lease }}
+            </a>
+        </td>
+        <td>{{ lease.first_period_start }}</td>
+        <td>{{ lease.get_currency_display }}</td>
+        <td>
+            <a href="{% url 'leases:lease_update' lease.pk %}">{% trans "Edit" %}</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>{% trans "No leases found." %} <a href="{% url 'leases:lease_create' %}">{% trans "Create one?" %}</a></p>
+{% endif %}
+
+{% endblock %}

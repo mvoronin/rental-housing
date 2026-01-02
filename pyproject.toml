@@ -1,0 +1,58 @@
+[project]
+name = "rental-housing"
+version = "0.1.0"
+description = "Rental housing payment tracking application"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "django>=5,<6",
+    "python-dotenv>=1.0.1",
+    "uvicorn[standard]>=0.32.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.14.2",
+    "pytest>=8.0",
+    "pytest-django>=4.5",
+    "pytest-cov>=4.0",
+    "pip-audit>=2.7",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "rental_housing.settings"
+python_files = ["test_*.py", "*_test.py"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort
+    "B",      # flake8-bugbear
+    "C4",     # flake8-comprehensions
+    "UP",     # pyupgrade
+    "DJ",     # flake8-django
+]
+ignore = [
+    "E501",   # line too long (handled by formatter)
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["leases", "rental_housing"]
+
+[tool.coverage.run]
+source = ["leases"]
+omit = ["*/migrations/*", "*/tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+]
